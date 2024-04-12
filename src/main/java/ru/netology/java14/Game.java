@@ -14,7 +14,7 @@ public class Game {
         registerPlayers = addToArray(player);
     }
 
-    public Player findByName (String name) {
+    public Player findByName(String name) {
         for (Player player : registerPlayers) {
             if (player.getName().equals(name)) {
                 return player;
@@ -23,7 +23,7 @@ public class Game {
         return null;
     }
 
-    public int round (String playerName1, String playerName2) {
+    public int round(String playerName1, String playerName2) {
         if (findByName(playerName1) == null) {
             throw new NotRegisteredException(
                     "Игрок с именем -" + playerName1 + " не зарегестрирован"
@@ -38,11 +38,9 @@ public class Game {
         int strength2 = findByName(playerName2).getStrength();
         if (strength1 > strength2) {
             return 1;
-        }
-        else if (strength1 == strength2) {
+        } else if (strength1 == strength2) {
             return 0;
-        }
-        else {
+        } else {
             return 2;
         }
     }

@@ -47,7 +47,7 @@ class GameTest {
             "Игрок 1,Player 2",
             "Player 1,Игрок 2",
     })
-    public void TestFindZeroPlayer(String playerName1, String playerName2 ) {
+    public void TestFindZeroPlayer(String playerName1, String playerName2) {
         Assertions.assertThrows(NotRegisteredException.class, () -> {
             game.round(playerName1, playerName2);
         });
