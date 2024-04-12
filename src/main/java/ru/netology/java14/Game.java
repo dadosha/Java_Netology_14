@@ -1,41 +1,33 @@
 package ru.netology.java14;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Game {
-    ArrayList<Player> registerPlayers = new ArrayList<>();
+    HashMap<String, Player> registerPlayers = new HashMap<>();
 
-    private ArrayList<Player> addToArray(Player player) {
-        registerPlayers.add(player);
+    private HashMap<String, Player> addToArray(String name,Player player) {
+        registerPlayers.put(name, player);
         return registerPlayers;
     }
 
-    public void register(Player player) {
-        registerPlayers = addToArray(player);
-    }
-
-    public Player findByName(String name) {
-        for (Player player : registerPlayers) {
-            if (player.getName().equals(name)) {
-                return player;
-            }
-        }
-        return null;
+    public void register(String name,Player player) {
+        registerPlayers = addToArray(name, player);
     }
 
     public int round(String playerName1, String playerName2) {
-        if (findByName(playerName1) == null) {
+        if (registerPlayers.get(playerName1) == null) {
             throw new NotRegisteredException(
                     "Игрок с именем -" + playerName1 + " не зарегестрирован"
             );
         }
-        if (findByName(playerName2) == null) {
+        if (registerPlayers.get(playerName2) == null) {
             throw new NotRegisteredException(
                     "Игрок с именем -" + playerName2 + " не зарегестрирован"
             );
         }
-        int strength1 = findByName(playerName1).getStrength();
-        int strength2 = findByName(playerName2).getStrength();
+        int strength1 = registerPlayers.get(playerName1).getStrength();
+        int strength2 = registerPlayers.get(playerName2).getStrength();
         if (strength1 > strength2) {
             return 1;
         } else if (strength1 == strength2) {
@@ -45,7 +37,7 @@ public class Game {
         }
     }
 
-    public ArrayList<Player> findAll() {
+    public HashMap<String, Player> findAll() {
         return registerPlayers;
     }
 }
